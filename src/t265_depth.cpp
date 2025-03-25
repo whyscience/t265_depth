@@ -70,6 +70,7 @@ namespace t265_depth
         image_sub_R_ptr = new message_filters::Subscriber<sensor_msgs::Image>();
         image_sub_L_ptr->subscribe(private_node, input_topic_left_, 1);
         image_sub_R_ptr->subscribe(private_node, input_topic_right_, 1);
+        std::cout << "Subscribing to: " << input_topic_left_ << " and " << input_topic_right_ << std::endl;
 
         sync_ptr = new Sync(MySyncPolicy(10), *image_sub_L_ptr, *image_sub_R_ptr);
         sync_ptr->registerCallback(boost::bind(&t265Depth::syncCallback, this, _1, _2));
@@ -82,7 +83,7 @@ namespace t265_depth
     void t265Depth::syncCallback(const sensor_msgs::Image::ConstPtr &image_msg_left,
                                  const sensor_msgs::Image::ConstPtr &image_msg_right)
     {
-        // ROS_INFO_STREAM_THROTTLE(2, "In syncCallback");
+         ROS_INFO_STREAM_THROTTLE(2, "In syncCallback");
 
         if (++frame_counter_ < process_every_nth_frame_)
         {

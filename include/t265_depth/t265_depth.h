@@ -80,10 +80,10 @@ namespace t265_depth
         ros::Publisher pub_camera_info_right_;
         ros::Publisher pub_pointcloud_;
 
-        std::string input_topic_left_;
-        std::string input_topic_right_;
+        std::string input_topic_left_ = "/camera/fisheye1/image_raw";
+        std::string input_topic_right_ = "/camera/fisheye2/image_raw";
         std::string output_topic_;
-        std::string output_frame_id_;
+        std::string output_frame_id_ = "t265_depth";
 
         sensor_msgs::CameraInfo output_camera_info_left_;
         sensor_msgs::CameraInfo output_camera_info_right_;
@@ -98,7 +98,7 @@ namespace t265_depth
         cv::Mat1f rmapx_;
         cv::Mat1f rmapy_;
 
-        std::string param_file_path_;
+        std::string param_file_path_ = "/home/eric/ws_t265/src/t265_depth/cfg/full_res.yaml";
         int SGBM_;
         int process_every_nth_frame_ = 1;
         int frame_counter_ = 0;
