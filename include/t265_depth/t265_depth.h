@@ -25,8 +25,7 @@ using namespace cv;
 using namespace cv::ximgproc;
 using namespace std;
 
-namespace t265_depth
-{
+namespace t265_depth {
 
     // stereo parameters
     constexpr int kPreFilterCap = 11;
@@ -51,17 +50,20 @@ namespace t265_depth
     constexpr bool kDoMedianBlur = true;
     constexpr bool kEnableDynReconf = false;
 
-    class t265Depth
-    {
+    class t265Depth {
     public:
         t265Depth(ros::NodeHandle &node, ros::NodeHandle &private_node);
+
         ~t265Depth();
 
         void initializeRectificationMapping(std::string param_file_path);
+
         void publishCameraInfo(cv::Mat K1, cv::Mat K2,
                                cv::Mat P1, cv::Mat P2,
                                cv::Mat R1, cv::Mat R2);
+
         void elaborateImages(const std_msgs::Header &header_msg);
+
         void computePointcloud(const cv::Mat &input_disparity,
                                sensor_msgs::PointCloud2 &pointcloud);
 
@@ -134,9 +136,9 @@ namespace t265_depth
         float baseline = 0.064;
 
         typedef message_filters::sync_policies::ExactTime<sensor_msgs::Image,
-                                                          sensor_msgs::Image>
-            MySyncPolicy;
+                sensor_msgs::Image>
+                MySyncPolicy;
         typedef message_filters::Synchronizer<MySyncPolicy>
-            Sync;
+                Sync;
     };
 } // namespace t265_depth
