@@ -75,7 +75,7 @@ namespace t265_depth {
 
     void t265Depth::syncCallback(const sensor_msgs::Image::ConstPtr &image_msg_left,
                                  const sensor_msgs::Image::ConstPtr &image_msg_right) {
-        ROS_INFO_STREAM_THROTTLE(2, "In syncCallback");
+        // ROS_INFO_STREAM_THROTTLE(2, "In syncCallback");
 
         if (++frame_counter_ < process_every_nth_frame_) {
             return;
